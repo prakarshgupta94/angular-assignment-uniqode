@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "projects": {
-    "angular-app": {
+    "app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,11 @@
             "outputPath": "dist/angular-app",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "styles": ["src/styles.css"],
+            "styles": [
+              "node_modules/@swimlane/ngx-datatable/themes/bootstrap.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
             "scripts": [],
             "tsConfig": "tsconfig.app.json"
           },
@@ -37,18 +41,12 @@
             "port": 4201
           },
           "configurations": {
-            
             "local": {
               "buildTarget": "app:build:local"
             }
-           
           },
           "defaultConfiguration": "local"
         }
-        // "extract-i18n": {
-        //   "builder": "@angular-devkit/build-angular:extract-i18n"
-        // }
-        
       }
     }
   },
