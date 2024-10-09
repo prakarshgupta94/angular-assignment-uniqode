@@ -68,7 +68,13 @@ export class AppComponent {
   }
 
   download() {
-    const ws = XLSX.utils.json_to_sheet(this.rows);
+    const exportData = this.rows.map((item) => ({
+      name: item.name,
+      height: item.height,
+      weight: item.weight,
+      rank: item.id,
+    }));
+    const ws = XLSX.utils.json_to_sheet(exportData);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
     const csv = XLSX.utils.sheet_to_csv(ws);
