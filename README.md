@@ -1,28 +1,29 @@
 # angular-assignment
 
-
 ## Overview
-This repository contains one Angular application in it.
-Uses node version 18 or above.
 
-## Repository Forking: 
-- Fork this repository to your personal GitHub account. 
+This repository contains angular assignment for Uniqode
 
-## Expectations
-- Optimize this application for improved performance. :zap:
-- Consider optimizations at all levels of building, maintaining, and using a frontend application. :hammer_and_wrench:
+## Optimisations/Changes Done:
 
-## Deployment: 
-- Host the optimized application on a free hosting platform such as Vercel, Netlify, AWS Amplify or any other of your choice.
-- Ensure that the deployed application is publicly accessible.
-
-### Access: 
-- Give access to your forked repository for review and collaboration purposes.
-
-# Conclusion
-Follow these high-level expectations to successfully complete the assignment. 
-Focus on optimizing the application for performance while ensuring all the existing UI features are working correctly. :white_check_mark:
-
-If you have any questions or need further clarification, feel free to reach out to the hiring team. :speech_balloon:
-
-Happy coding! :rocket:
+- angular.json
+  - The app was not bootstraping due to wrong configurations in angular.json
+  - added styles for ngx-datatable and bootstrap
+  - removed commented code
+- app.component.ts
+  - used forkJoin to handle parallel API call and show a loader in the button to handle async operation, previously if I show datatable, for the first time table was loaded with empty results even when the results were available in the component.
+  - handled button loader
+  - Enhanced the UI of datatable by utilising the ngx-datatable docs, used bootstrap UI
+  - Added client side pagination in the table.
+- app.component.html
+  - enhanced the UI to be in container.
+  - fixed buttons UI
+  - Added a top action center for all the buttons and the timer.
+  - handled button state for pokemon table and coming back to posts
+- added a gitignore file to avoid local setup files sync on github
+- removed unnecessary firebase initialisation
+- Fixed exported csv data
+- Seperation of concern
+  - created routing
+  - created different component for pokemon and posts home
+  - created seperate services for pokemon and posts.
