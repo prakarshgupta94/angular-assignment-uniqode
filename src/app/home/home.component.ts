@@ -1,7 +1,7 @@
-import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { HomeService } from "app/home.service";
 
 @Component({
   selector: "home",
@@ -14,8 +14,8 @@ export class HomeComponent {
   data: any = [];
 
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private homeService: HomeService
   ) {}
 
   ngOnInit() {
@@ -27,10 +27,8 @@ export class HomeComponent {
   }
 
   fetchData() {
-    this.http
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .subscribe((response) => {
-        this.data = response;
-      });
+    this.homeService.getData("posts").subscribe((response) => {
+      this.data = response;
+    });
   }
 }

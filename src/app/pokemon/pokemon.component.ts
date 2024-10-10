@@ -1,10 +1,10 @@
-import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { forkJoin, Observable } from "rxjs";
 import * as XLSX from "xlsx/xlsx.mjs";
 import * as FileSaver from "file-saver";
 import { Router } from "@angular/router";
+import { PokemonService } from "app/pokemon.service";
 
 @Component({
   selector: "pokemon",
@@ -17,8 +17,8 @@ export class PokemonComponent {
   isLoading = false;
   rows: any[] = [];
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private pokemonService: PokemonService
   ) {}
 
   ngOnInit() {
@@ -31,9 +31,7 @@ export class PokemonComponent {
     for (let i = 1; i <= 200; i++) {
       // 200 pokemons
       const randomNum = Math.floor(Math.random() * 500) + 1;
-      apiCalls.push(
-        this.http.get(`https://pokeapi.co/api/v2/pokemon/${randomNum}`)
-      );
+      apiCalls.push(this.pokemonService.getData(`v2/pokemon/${randomNum}`));
     }
     forkJoin(apiCalls).subscribe({
       next: (results) => {
@@ -68,9 +66,8 @@ export class PokemonComponent {
 
   onActivate(event) {
     if (event.type == "click") {
-      this.http
-        .get(`https://pokeapi.co/api/v2/pokemon/${event.row.id}`)
-
+      this.pokemonService
+        .getData(`v2/pokemon/${event.row.id}`)
         .subscribe((response: any) => {
           let moves = response.moves.map((move) => {
             return move.move.name;
