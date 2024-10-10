@@ -12,6 +12,7 @@ import { HomeService } from "app/home.service";
 })
 export class HomeComponent {
   data: any = [];
+  isLoading: boolean = false;
 
   constructor(
     private router: Router,
@@ -27,8 +28,10 @@ export class HomeComponent {
   }
 
   fetchData() {
+    this.isLoading = true;
     this.homeService.getData("posts").subscribe((response) => {
       this.data = response;
+      this.isLoading = false;
     });
   }
 }
