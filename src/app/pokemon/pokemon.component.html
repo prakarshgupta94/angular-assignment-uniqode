@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="action-bar">
+    <button class="pokemon-button" (click)="navigateToHome()">
+      <span>Back</span>
+    </button>
+
+    <button class="download-button" (click)="download()">Download CSV</button>
+  </div>
+  <div>
+    <h1>Pokémon Table</h1>
+
+    <ngx-datatable
+      class="bootstrap datatable"
+      [rows]="rows"
+      [columns]="[
+        { prop: 'name', name: 'Name' },
+        { prop: 'height', name: 'Height' },
+        { prop: 'weight', name: 'Weight' },
+        { prop: 'id', name: 'Rank' },
+      ]"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
+      [limit]="12"
+      [count]="rows.length"
+      [loadingIndicator]="isLoading"
+      (activate)="onActivate($event)"
+    >
+    </ngx-datatable>
+  </div>
+</div>
